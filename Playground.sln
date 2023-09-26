@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeGenerator", "CodeGenera
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneratorClient", "GeneratorClient\GeneratorClient.csproj", "{2D51F589-88B8-43FA-B2D0-0AA8F2EA8E4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTCPClient", "SimpleTCPClient\SimpleTCPClient.csproj", "{3EBC3488-E054-4C49-9CD4-5BC184815FB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTCPServer", "SimpleTCPServer\SimpleTCPServer.csproj", "{3EBC3488-E054-4C49-9CD4-5BC184815FB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
