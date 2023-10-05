@@ -10,24 +10,16 @@ internal static class Program
     {
         TcpClient client = new TcpClient();
        
-        client.Connect("127.0.0.1", 13000);
+        client.Connect("127.0.0.1", 4300);
 
-        string payload = "ASK\n---\nFor:Action\n---{\"Hello\":\"Nice\"}";
+        string payload = "ASK\n---\nFor:Action\n---\n{\"Hello\":\"Nice\"}\n---";
 
         NetworkStream stream = client.GetStream();
 
-        var res = Encoding.UTF8.GetBytes(payload);
+        byte[] res = Encoding.UTF8.GetBytes(payload);
         stream.Write(res, 0, res.Length);
 
-        Console.WriteLine($"Send {res.Length} bytes");
-
-        while(client.Connected)
-        {
-
-        }
-
+        Console.WriteLine("Connection closed!");
         client.Close();
-
-        Console.ReadLine();
     }
 }
