@@ -1,10 +1,8 @@
-﻿
+﻿using SimpleTCPServer;
+
 using System.Net;
 using System.Net.Sockets;
-using System.Security.Cryptography;
 using System.Text;
-
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SimpleTCPClient;
 
@@ -12,7 +10,7 @@ internal static class Program
 {
     private static int Port { get; } = 4300;
 
-    public static void Main()
+    public static async Task Main()
     {
         IPAddress address = IPAddress.Parse("127.0.0.1");
         
@@ -23,25 +21,27 @@ internal static class Program
 
         while (true)
         {
+            Console.WriteLine("Waiting for connection");
+
             using TcpClient client = listener.AcceptTcpClient();
 
-            Console.WriteLine("Connection received!");
+            try
+            { 
+                Thread worker = new Thread(new ThreadStart(() => new TcpWorker(client).Run()));
 
-            NetworkStream stream = client.GetStream();
+                worker.Start();
 
-            bool isFinished = false;
-            Span<byte> buffer = new Span<byte>(new byte[20]);
-
-            while (!isFinished)
-            {
-                isFinished = stream.Read(buffer) <= 0;
-                Console.WriteLine(Encoding.UTF8.GetString(buffer));
-                Console.WriteLine($"Received {buffer.ToArray().Where(b => b != 0).Count()}");
-                buffer = new Span<byte>(new byte[128]);
+                Console.WriteLine("Connection was ended!");
             }
-
-            Console.WriteLine("Connection terminated!");
-            client.Close();
+            catch (Exception ex)
+            {
+             
+            }
+            finally
+            {
+                client.Close();
+            }
+            
         }
     }
 }
