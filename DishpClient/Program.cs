@@ -1,25 +1,38 @@
-﻿
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using System.Text;
 
 namespace Dishp.Client;
 
 internal static class Program
 {
-    public static void Main()
+    public static void Main(string[] args)
     {
-        TcpClient client = new TcpClient();
+        int id = int.Parse(args[0]);
+        using TcpClient client = new TcpClient();
        
         client.Connect("127.0.0.1", 4300);
 
-        string payload = "ASK\n---\nFor:Action\n---\n{\"Hello\":\"Nice\"}\n---";
+        while(true)
+        {
+            try
+            {
+                string payload = $"ASK {id}\n---\nFor:Action\n---\n{{\"Hello\":\"Nice\"}}\n---";
 
-        NetworkStream stream = client.GetStream();
+                NetworkStream stream = client.GetStream();
 
-        byte[] res = Encoding.UTF8.GetBytes(payload);
-        stream.Write(res, 0, res.Length);
+                byte[] res = Encoding.UTF8.GetBytes(payload);
+                stream.Write(res, 0, res.Length);
+            }
+            catch (Exception ex)
+            {
+                continue;
+            }
+            finally
+            {
+                client.Close();
+            }
+        }
 
-        Console.WriteLine("Connection closed!");
-        client.Close();
+        Console.WriteLine("Connection ended!");
     }
 }
