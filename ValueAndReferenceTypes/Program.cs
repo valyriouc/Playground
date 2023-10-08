@@ -11,6 +11,48 @@
     {
         static void Main(string[] args)
         {
+            // PlayingWithInParameters()
+
+            //PlayingWithRefAssignments();
+
+            PlayingWithValueAssignments();
+        }
+
+        static void PlayingWithValueAssignments()
+        {
+            int value = 23;
+            int value2 = value;
+
+            Console.WriteLine(value);
+            Console.WriteLine(value2);
+
+            value2 = 4344;
+
+            Console.WriteLine(value);
+            Console.WriteLine(value2);
+        }
+
+        static void PlayingWithRefAssignments()
+        {
+            Testing test1 = new()
+            {
+                Name = "Hello",
+                Value = 4343
+            };
+
+            Testing test2 = test1;
+
+            Console.WriteLine(test1.Name);
+            Console.WriteLine(test2.Name);
+
+            test2.Name = "World";
+
+            Console.WriteLine(test1.Name);
+            Console.WriteLine(test2.Name);
+        }
+
+        static void PlayingWithInParameters()
+        {
             Testing test = new()
             {
                 Name = "test",
