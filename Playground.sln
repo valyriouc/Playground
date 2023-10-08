@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DISHPServer", "DISHPServer\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DishpClient", "DishpClient\DishpClient.csproj", "{C82F57E0-E0CA-4C6A-8C60-925751F08091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithBytesAndStreams", "WorkingWithBytesAndStreams\WorkingWithBytesAndStreams.csproj", "{2678FC02-1500-4E7B-8B58-885DEEE4F3AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithBytesAndStreams", "WorkingWithBytesAndStreams\WorkingWithBytesAndStreams.csproj", "{2678FC02-1500-4E7B-8B58-885DEEE4F3AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueAndReferenceTypes", "ValueAndReferenceTypes\ValueAndReferenceTypes.csproj", "{2C05271F-96F2-4DA5-938B-E11AE68978AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{2678FC02-1500-4E7B-8B58-885DEEE4F3AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2678FC02-1500-4E7B-8B58-885DEEE4F3AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2678FC02-1500-4E7B-8B58-885DEEE4F3AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C05271F-96F2-4DA5-938B-E11AE68978AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C05271F-96F2-4DA5-938B-E11AE68978AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C05271F-96F2-4DA5-938B-E11AE68978AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C05271F-96F2-4DA5-938B-E11AE68978AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
