@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithBytesAndStreams"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueAndReferenceTypes", "ValueAndReferenceTypes\ValueAndReferenceTypes.csproj", "{2C05271F-96F2-4DA5-938B-E11AE68978AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASimpleStack", "ASimpleStack\ASimpleStack.csproj", "{69018C1E-97E6-429E-BAFC-3E9B9EC61998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackTests", "StackTests\StackTests.csproj", "{077082B1-7B29-4976-8051-15FECD6E26C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{2C05271F-96F2-4DA5-938B-E11AE68978AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C05271F-96F2-4DA5-938B-E11AE68978AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C05271F-96F2-4DA5-938B-E11AE68978AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69018C1E-97E6-429E-BAFC-3E9B9EC61998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69018C1E-97E6-429E-BAFC-3E9B9EC61998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69018C1E-97E6-429E-BAFC-3E9B9EC61998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69018C1E-97E6-429E-BAFC-3E9B9EC61998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{077082B1-7B29-4976-8051-15FECD6E26C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{077082B1-7B29-4976-8051-15FECD6E26C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{077082B1-7B29-4976-8051-15FECD6E26C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{077082B1-7B29-4976-8051-15FECD6E26C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
