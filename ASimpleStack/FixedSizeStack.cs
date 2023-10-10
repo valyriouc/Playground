@@ -10,17 +10,17 @@ namespace ASimpleStack
     {
         private TEntity[] Entities { get; set; }
 
-        private int Offset { get; set; } 
+        public int Offset { get; private set; } 
 
         public int Size { get; }
 
-        public override bool IsEmpty => Offset == 0;
+        public override bool IsEmpty => Offset < 0;
 
         public FixedSizeStack(int size)
         {
             Entities = new TEntity[size];
         
-            Offset = 0;
+            Offset = -1;
             Size = size;
         }
 
@@ -46,8 +46,8 @@ namespace ASimpleStack
                     "Stack is full");
             }
 
+            Offset += 1;
             Entities[Offset] = entity;
-            Offset++;
         }
 
         public bool TryPop(out TEntity entity)
@@ -70,8 +70,7 @@ namespace ASimpleStack
         {
             ThrowIfOffsetAlreadyNull();
 
-            Offset--;
-            return Entities[Offset];
+            return Entities[Offset--];
         }
 
         public bool TryTop(out TEntity entity)
@@ -94,13 +93,12 @@ namespace ASimpleStack
         {
             ThrowIfOffsetAlreadyNull();
 
-            Offset--;
             return Entities[Offset];
         }
 
         private void ThrowIfOffsetAlreadyNull()
         {
-            if (Offset == 0)
+            if (Offset < 0)
             {
                 throw new IndexOutOfRangeException(
                     "Stack has no elements");

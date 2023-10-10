@@ -56,6 +56,7 @@ namespace StackTests
             FixedSizeStack<int> stack = new FixedSizeStack<int>(2);
 
             stack.Push(1);
+
             Assert.Equal(1, stack.Pop());
         }
 
@@ -75,6 +76,7 @@ namespace StackTests
             FixedSizeStack<int> stack = new FixedSizeStack<int>(2);
 
             stack.Push(1);
+
             Assert.True(stack.TryPop(out int entry));
             Assert.Equal(1, entry);
         }
@@ -101,8 +103,23 @@ namespace StackTests
             FixedSizeStack<int> stack = new FixedSizeStack<int>(2);
 
             stack.Push(1);
+
             Assert.Equal(1, stack.Pop());   
         }
+
+        [Fact]
+        public void PopReturnsCorrectEntity2()
+        {
+            FixedSizeStack<int> stack = new FixedSizeStack<int>(2);
+
+            stack.Push(1);
+            stack.Push(2);
+
+            Assert.Equal(2, stack.Pop());
+            Assert.Equal(1, stack.Pop());
+            Assert.Throws<IndexOutOfRangeException>(() => stack.Pop());
+        }
+
 
         [Fact]
         public void TryTopReturnsTrueAndAppropriateEntry()
@@ -110,9 +127,13 @@ namespace StackTests
             FixedSizeStack<int> stack = new FixedSizeStack<int>(2);
 
             stack.Push(1);
+            stack.Push(2);
 
-            Assert.True(stack.TryTop(out int entry));
-            Assert.Equal(1, entry);
+            for(int i = 0; i < 2; i++)
+            {
+                Assert.True(stack.TryTop(out int entry));
+                Assert.Equal(2, entry);
+            }
         }
 
         [Fact]
@@ -129,8 +150,10 @@ namespace StackTests
             FixedSizeStack<int> stack = new FixedSizeStack<int>(2);
 
             stack.Push(1);
+            stack.Push(2);
 
-            Assert.Equal(1, stack.Top());
+            Assert.Equal(2, stack.Top());
+            Assert.Equal(2, stack.Top());
         }
 
         [Fact]
