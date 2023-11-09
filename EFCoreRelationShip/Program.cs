@@ -12,6 +12,7 @@ namespace EFCoreRelationShip
             using TestingDbContext dbContext = new TestingDbContext();
 
             foreach (User user in dbContext.Users.Include(x => x.Notes))
+            {
                 string json = JsonSerializer.Serialize(user, new JsonSerializerOptions()
                 {
                     ReferenceHandler = ReferenceHandler.IgnoreCycles
