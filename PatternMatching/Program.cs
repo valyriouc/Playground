@@ -14,6 +14,10 @@ internal static class Program
         string result = GetResultConstantPatternSwitch(testing);
 
         Console.WriteLine(result);
+
+        string furtherResult = ConstantPatternSwitchInt(200);
+
+        Console.WriteLine(furtherResult);
     }
 
     public static void GetResultConstantIf(Span<char> span)
@@ -33,5 +37,12 @@ internal static class Program
         "hello world" => "We got a hit",
         "Hello no world" => "We got another hit",
         _ => "No hit at all"
+    };
+
+    public static string ConstantPatternSwitchInt(int input) => input switch
+    {
+        100 => "We are hundert",
+        200 => "We are two hundert",
+        _ => "We have no number"
     };
 }
