@@ -1,27 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//using Microsoft.EntityFrameworkCore;
 
-using System.Text.Json;
-using System.Text.Json.Serialization;
+//using System.Text.Json;
+//using System.Text.Json.Serialization;
 
-namespace EFCoreRelationShip
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            using TestingDbContext dbContext = new TestingDbContext();
+//namespace EFCoreRelationShip
+//{
+//    internal class Program
+//    {
+//        static void Main(string[] args)
+//        {
+//            using TestingDbContext dbContext = new TestingDbContext();
 
-            foreach (User user in dbContext.Users.Include(x => x.Notes))
-            {
-                string json = JsonSerializer.Serialize(user, new JsonSerializerOptions()
-                {
-                    ReferenceHandler = ReferenceHandler.IgnoreCycles
-                });
+//            Microsoft.EntityFrameworkCore.Metadata.IModel model = dbContext.Model;
 
-                Console.WriteLine(json);
-            }
+//            foreach (User user in dbContext.Users.Include(x => x.Notes))
+//            {
+//                string json = JsonSerializer.Serialize(user, new JsonSerializerOptions()
+//                {
+//                    ReferenceHandler = ReferenceHandler.IgnoreCycles
+//                }
 
-
-        }
-    }
-}
+//                Console.WriteLine(json);
+//            }
+//        }
+//    }
+//}
