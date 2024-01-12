@@ -36,7 +36,6 @@ class RingBuffer(Generic[T]):
             self.isReset = False
             self.readPointer = -1
         if ((self.readPointer + 1) > self.writePointer and not self.isReset):
-            # This is the problem when going down to start 
             raise OperationError() 
         self.readPointer += 1
         value = self.ring[self.readPointer]
@@ -73,3 +72,11 @@ if __name__ == "__main__":
 
     r5 = buffer.read()
     print(r5)
+
+    buffer.write(1020)
+    buffer.write(4393)
+    r6 = buffer.read()
+    r7 = buffer.read()
+
+    print(r6)
+    print(r7)
