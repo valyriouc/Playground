@@ -1,4 +1,4 @@
-from typing import TypeVar, Generic, Sequence
+from typing import TypeVar, Generic, Sequence, Callable
 
 class IWalking:
     def __init__(self, speed, xPos, yPos):
@@ -46,37 +46,18 @@ class RingBuffer(Generic[T]):
         self.writePointer += 1
         self.ring[self.writePointer] = value
 
+def myfunc(val: int):
+    print(val)
+
+class FuncWrapper:
+    def __init__(self, funcPtr: Callable[[int], None]):
+        self.funcPtr = funcPtr
+    
+    def execute(self, val):
+        self.funcPtr(val)
+
 if __name__ == "__main__":
-    buffer = RingBuffer[int](4)
-    
-    buffer.write(100)
-    buffer.write(200)
+   
+   wrapper = FuncWrapper(myfunc)
 
-    r1 = buffer.read()
-    print(r1)
-    buffer.write(300)
-
-    r2 = buffer.read()
-    print(r2)
-
-    buffer.write(400)
-    buffer.write(500)
-
-    r3 = buffer.read()
-    print(r3)
-
-    r4 = buffer.read()
-    print(r4)
-
-    r5 = buffer.read()
-    print(r5)
-
-    buffer.write(1020)
-    buffer.write(4393)
-    r6 = buffer.read()
-    r7 = buffer.read()
-    
-    print(r6)
-    print(r7)
-
-    # r8 = buffer.read()
+   wrapper.execute(200)
