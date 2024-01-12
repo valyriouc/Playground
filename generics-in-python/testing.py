@@ -28,14 +28,13 @@ class RingBuffer(Generic[T]):
         self.capacity = capacity
         self.readPointer = -1
         self.writePointer = -1
-        self.isReset = False
         self.ring: list[T] = [None] * capacity
 
     def read(self) -> T:
         if ((self.readPointer + 1) == self.capacity):
-            self.isReset = False
             self.readPointer = -1
-        if ((self.readPointer + 1) > self.writePointer and not self.isReset):
+        if ((self.readPointer + 1) > self.writePointer and 
+            self.writePointer != 0):
             raise OperationError() 
         self.readPointer += 1
         value = self.ring[self.readPointer]
@@ -43,14 +42,13 @@ class RingBuffer(Generic[T]):
     
     def write(self, value: T) -> None:
         if ((self.writePointer + 1) == self.capacity):
-            self.isReset = True
             self.writePointer = -1
         self.writePointer += 1
         self.ring[self.writePointer] = value
 
 if __name__ == "__main__":
     buffer = RingBuffer[int](4)
-
+    
     buffer.write(100)
     buffer.write(200)
 
@@ -77,6 +75,8 @@ if __name__ == "__main__":
     buffer.write(4393)
     r6 = buffer.read()
     r7 = buffer.read()
-
+    
     print(r6)
     print(r7)
+
+    # r8 = buffer.read()
