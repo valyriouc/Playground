@@ -2,6 +2,8 @@ from collections.abc import Iterator
 from typing import Iterator
 import requests
 
+# TODO: Split header and actual data
+
 class CsvError(Exception):
     def __self__(self, message):
         super().__init__(message)
@@ -71,6 +73,14 @@ class CsvTable:
             self._iter_count += 1
             return row
         
+    def get_row(self, number) -> list:
+        for elem in self.content[number - 1]:
+            yield elem
+        
+    def get_column(self, number) -> list:
+        for row in self.content:
+            yield row[number - 1]
+
     # Accessing operator 
     def __getitem__(self, key):
         return self.content[key[0]][key[1]]
@@ -129,16 +139,15 @@ class CsvReader:
     def read_from_inet(url: str) -> CsvTable | None:
         response = requests.get(url) 
         if response.status_code == 200:
-            return CsvReader.read_from_string(response.content)            
+            return CsvReader.read_from_string(response.content.decode())            
         return None
     
 if __name__ == "__main__":
-    table = CsvReader.read_from_file("classdefinition.csv")
+    CsvReader.read_from_file("classdefinition.csv")
     CsvReader.read_from_string("c1,c2,c3\r1,2,3\r1,2,3")
     CsvReader.read_from_string("c1,c2,c3\n1,2,3\n1,2,3\n")
     CsvReader.read_from_string("c1;c2;c3\n1;2;3\n1;2;3\n")
 
-
-    for row in table:
-        print(row[1], end=" ")
-        print(row[0])
+    table = CsvReader.read_from_inet("https://media.githubusercontent.com/media/datablist/sample-csv-files/main/files/organizations/organizations-100.csv")
+    for item in table.get_column(4):
+        print(item)
