@@ -1,12 +1,52 @@
 from collections.abc import Iterator
 from typing import Iterator, Callable
 import requests
+import urllib3
 
-# TODO: Implementing type system for csv 
+# TODO: Make the type system automatically detect the correct type 
+# TODO: Moving this to the common repo? 
+# TODO: Convert to a custom module/package
+# TODO: Implement append methods 
+# TODO: Implement delete data rows
+# TODO: Implement edit data rows
 
 class CsvError(Exception):
     def __self__(self, message):
         super().__init__(message)
+
+class CsvTypeConverter:
+    def __init__(self):
+        pass 
+    
+    def get_type(self, literal: str) -> type:
+        # Number 
+        # And 
+        # So
+        # On
+        try:
+
+            start = literal[0]
+            if (start == "T" or start == "t" or start == "f" or start == "F"):
+                return self._parse_boolean(literal)
+        except TypeError:
+            pass
+        finally:
+            return str
+
+    def _parse_datetime(self, literal: str):
+        pass
+
+    def _parse_int(self, literal: str):
+        pass 
+
+    def _parse_float(self, literal: str):
+        pass
+
+    def _parse_boolean(self, literal: str):
+        if literal == "True" or literal == "False" or literal == "true" or literal == "false":
+            return bool
+        else:
+            raise TypeError()
 
 class CsvRow:
     def __init__(self, args: list[any], headers: dict):
@@ -45,27 +85,27 @@ class CsvRow:
 
 class CsvTable:
     allowed = [";", ","]
-    def __init__(self):    
+    def __init__(self, typeSystem: dict[int,type]):    
         self.rowCount = 0
         self.columnCount = 0
         self.content: list[CsvRow] = []
         self.headers = None
         self.separation = None
-
+        self.typeSystem = typeSystem
         self._iter_count = 0
 
     def add_line(self, line: str, hasHead: bool = False) -> None:
         if self.separation is None:
             self.separation = self._get_separation_sign(line)
 
-        if not self._is_correct_separactor(line):
-            raise CsvError(f"Detected incorrect csv separator at line {self.rowCount + 1}")
         columns = [cell.strip() for cell in line.split(self.separation)]
 
         if (self.columnCount == 0):
-            columnCount = len(columns)
-            if (columnCount == 0):
+            self.columnCount = len(columns)
+            if (self.columnCount == 0):
                 raise CsvError("Csv has no content!")
+        elif (self.columnCount != len(columns)):
+            raise CsvError(f"Error at line {self.rowCount + 2}: Column count does not match!")
         
         if (hasHead and self.headers is None):
             self.headers = {}
@@ -73,15 +113,19 @@ class CsvTable:
                 self.headers[columns[i]] = i
             return
         
-        self.content.append(CsvRow(columns, self.headers))
+        self.content.append(CsvRow([i for i in self._convert_to_type(columns)], self.headers))
         self.rowCount += 1
+
+    def _convert_to_type(self, columns: list):
+        for i in range(0, len(columns)):
+            yield self.typeSystem[i](columns[i])
 
     def _get_separation_sign(self, line) -> str: 
         analyseable = [i for i in line if i in CsvTable.allowed]
-        return max(analyseable)
-    
-    def _is_correct_separactor(self, line) -> bool:
-        return True
+        main_sep = max(analyseable)
+        if (len([i for i in analyseable if i is not main_sep]) != 0):
+            raise CsvError(f"Malformed csv at line {self.rowCount + 2}: Only one separator is allowed!")
+        return main_sep
     
     def __iter__(self):
         return self
@@ -114,7 +158,7 @@ class CsvTable:
         current = None
         value = None
         for row in self.content:
-            if (row is None):
+            if (current is None):
                 current = row
                 value = func(row)
             else:
@@ -124,6 +168,20 @@ class CsvTable:
                     value = tmp
         return current
 
+    def get_min(self, func: Callable[[CsvRow], int]) -> CsvRow:
+        current = None
+        value = None
+        for row in self.content:
+            if (current is None):
+                current = row 
+                value = func(row)
+            else:
+                tmp = func(row)
+                if (tmp < value):
+                    current = row
+                    value = tmp
+        return current
+    
     def get_column(self, index: str | int) -> list:
         if type(index) is str:
             print(self.headers)
@@ -145,10 +203,47 @@ class CsvTable:
             payload = self.write_to_string()
             fobj.write(payload)  
 
+    @staticmethod
+    def read_from_file(filename, typeSystem: dict[int,type], hasHead: bool = False):
+        with open(filename, "r") as fobj:
+            input = fobj.read()
+            return CsvTable.read_from_string(input, typeSystem, hasHead)
+
+    @staticmethod
+    def read_from_string(csv: str, typeSystem: dict[int,type], hasHead: bool = False):
+        table = CsvTable(typeSystem)
+        for line in SplitAtLineEndIter(csv):
+            table.add_line(line,hasHead)
+        return table
+            
+    @staticmethod 
+    def read_from_inet(url: str, typeSystem: dict[int,type], hasHead: bool = False):
+        response = requests.get(url) 
+        if response.status_code == 200:
+            decoded = response.content.decode()
+            return CsvTable.read_from_string(decoded, typeSystem, hasHead)            
+        raise ConnectionError("Something went wrong when requesting csv!")
+
+    def append_from_file(self, filename):
+        pass
+
+    def append_from_string(self, csv):
+        pass
+
+    def append_from_url(self, url):
+        pass 
+
+    def delete_row(self, rowNumber):
+        pass
+
+    def delete_column(self, columnNumber):
+        pass
+        
+    
 class SplitAtLineEndIter:
     def __init__(self, input: str):
         self.buffer = input
-    
+
     def __iter__(self):
         return self
 
@@ -178,33 +273,8 @@ class SplitAtLineEndIter:
                 return (index, index+1)
             index += 1
 
-class CsvReader:
-    def __init__(self):
-        raise NotImplementedError("This class is a static one")
-
-    @staticmethod
-    def read_from_file(filename, hasHead: bool = False) -> CsvTable:
-        with open(filename, "r") as fobj:
-            input = fobj.read()
-            return CsvReader.read_from_string(input, hasHead)
-
-    @staticmethod
-    def read_from_string(csv: str, hasHead: bool = False) -> CsvTable:
-        table = CsvTable()
-        for line in SplitAtLineEndIter(csv):
-            table.add_line(line,hasHead)
-        return table
-            
-    @staticmethod 
-    def read_from_inet(url: str, hasHead: bool = False) -> CsvTable | None:
-        response = requests.get(url) 
-        if response.status_code == 200:
-            decoded = response.content.decode()
-            return CsvReader.read_from_string(decoded, hasHead)            
-        return None
-    
 if __name__ == "__main__":
-    table = CsvReader.read_from_file("classdefinition.csv", True)
+    table = CsvTable.read_from_file("classdefinition.csv", {0: int, 1: int, 2:int, 3:int}, hasHead=True)
     # CsvReader.read_from_string("c1,c2,c3\r1,2,3\r1,2,3", True)
     # CsvReader.read_from_string("c1,c2,c3\n1,2,3\n1,2,3\n", True)
     # table = CsvReader.read_from_string("col1;col2;col3\n1;2;3\n1;2;3\n", True)
@@ -218,9 +288,15 @@ if __name__ == "__main__":
     for row in table:
         print(row["col4"])
 
-    res = table.get_row_where(lambda row: int(row["col1"]) == 1)
+    res = table.get_row_where(lambda row: row["col1"] == 1)
     for r in res:
         print(r)
 
-    ro = table.get_first_or_default(lambda r: int(r["col4"]) == 4)
+    ro = table.get_first_or_default(lambda r: r["col4"] == 4)
     print(ro)
+
+    min = table.get_min(lambda r: row["col2"])
+    print(min)
+
+    max = table.get_max(lambda r: row["col2"])
+    print(max)

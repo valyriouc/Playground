@@ -1,5 +1,6 @@
 import typing
 import collections.abc as coll
+import csv
 
 T = typing.TypeVar("T", bound=typing.Sequence)
 class ReverseIter(typing.Generic[T]):
@@ -26,5 +27,10 @@ class Testing:
 
 
 if __name__ == "__main__":
-    for i in Testing():
-        print(i)
+    # csv.DictReader()
+    # for i in Testing():
+    #     print(i)
+
+    test = ["Hello", "1", "3.2", "True"]
+    
+    print(res)
