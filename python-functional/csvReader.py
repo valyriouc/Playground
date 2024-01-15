@@ -274,7 +274,7 @@ class SplitAtLineEndIter:
             index += 1
 
 if __name__ == "__main__":
-    table = CsvTable.read_from_file("classdefinition.csv", {0: int, 1: int, 2:int, 3:int}, hasHead=True)
+    table = CsvTable.read_from_file("MOCK_DATA.csv", {0: int, 1: str, 2:str, 3:str, 4: str, 5: str}, hasHead=True)
     # CsvReader.read_from_string("c1,c2,c3\r1,2,3\r1,2,3", True)
     # CsvReader.read_from_string("c1,c2,c3\n1,2,3\n1,2,3\n", True)
     # table = CsvReader.read_from_string("col1;col2;col3\n1;2;3\n1;2;3\n", True)
@@ -283,20 +283,20 @@ if __name__ == "__main__":
     #     "https://media.githubusercontent.com/media/datablist/sample-csv-files/main/files/organizations/organizations-100.csv",
     #     True)
     
-    print(table[1,"col3"])
+    print(table[1,"first_name"])
 
     for row in table:
-        print(row["col4"])
+        print(row["last_name"])
 
-    res = table.get_row_where(lambda row: row["col1"] == 1)
+    res = table.get_row_where(lambda row: row["id"] == 1)
     for r in res:
         print(r)
 
-    ro = table.get_first_or_default(lambda r: r["col4"] == 4)
+    ro = table.get_first_or_default(lambda r: r["id"] == 4)
     print(ro)
 
-    min = table.get_min(lambda r: row["col2"])
+    min = table.get_min(lambda r: row["id"])
     print(min)
 
-    max = table.get_max(lambda r: row["col2"])
+    max = table.get_max(lambda r: row["id"])
     print(max)
