@@ -39,9 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumerableTesting", "Enumer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiskovTesting", "LiskovTesting\LiskovTesting.csproj", "{2718FE21-E1FD-4835-AD9A-93AE375034B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventWaitHandlesTesting", "EventWaitHandlesTesting\EventWaitHandlesTesting.csproj", "{A180FCEA-1C3D-4A52-B22B-6E3AB9C5F6FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventWaitHandlesTesting", "EventWaitHandlesTesting\EventWaitHandlesTesting.csproj", "{A180FCEA-1C3D-4A52-B22B-6E3AB9C5F6FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaitHandleSetter", "WaitHandleSetter\WaitHandleSetter.csproj", "{98D07B24-6F9B-4DC7-8E81-26C4A7041035}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaitHandleSetter", "WaitHandleSetter\WaitHandleSetter.csproj", "{98D07B24-6F9B-4DC7-8E81-26C4A7041035}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteAppTesting", "NoteAppTesting\NoteAppTesting.csproj", "{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +131,10 @@ Global
 		{98D07B24-6F9B-4DC7-8E81-26C4A7041035}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98D07B24-6F9B-4DC7-8E81-26C4A7041035}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98D07B24-6F9B-4DC7-8E81-26C4A7041035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
