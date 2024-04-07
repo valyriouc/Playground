@@ -45,7 +45,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaitHandleSetter", "WaitHan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteAppTesting", "NoteAppTesting\NoteAppTesting.csproj", "{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopAndRestart", "StopAndRestart\StopAndRestart.csproj", "{244BDFA8-A749-4F17-927A-C64BB5CE04FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StopAndRestart", "StopAndRestart\StopAndRestart.csproj", "{244BDFA8-A749-4F17-927A-C64BB5CE04FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfSenderClient", "PdfSenderClient\PdfSenderClient.csproj", "{AE7BB3C4-714C-4FC7-AEBA-CE3914DF2C20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfSenderServer", "PdfSenderServer\PdfSenderServer.csproj", "{E59AF2F0-6C66-41B4-B175-74B3850FAC46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +145,14 @@ Global
 		{244BDFA8-A749-4F17-927A-C64BB5CE04FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{244BDFA8-A749-4F17-927A-C64BB5CE04FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{244BDFA8-A749-4F17-927A-C64BB5CE04FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE7BB3C4-714C-4FC7-AEBA-CE3914DF2C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE7BB3C4-714C-4FC7-AEBA-CE3914DF2C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE7BB3C4-714C-4FC7-AEBA-CE3914DF2C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE7BB3C4-714C-4FC7-AEBA-CE3914DF2C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E59AF2F0-6C66-41B4-B175-74B3850FAC46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E59AF2F0-6C66-41B4-B175-74B3850FAC46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E59AF2F0-6C66-41B4-B175-74B3850FAC46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E59AF2F0-6C66-41B4-B175-74B3850FAC46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
