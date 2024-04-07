@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventWaitHandlesTesting", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaitHandleSetter", "WaitHandleSetter\WaitHandleSetter.csproj", "{98D07B24-6F9B-4DC7-8E81-26C4A7041035}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteAppTesting", "NoteAppTesting\NoteAppTesting.csproj", "{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteAppTesting", "NoteAppTesting\NoteAppTesting.csproj", "{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopAndRestart", "StopAndRestart\StopAndRestart.csproj", "{244BDFA8-A749-4F17-927A-C64BB5CE04FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7F216BD-5CD3-4496-BDC4-CBDD65C7D36F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244BDFA8-A749-4F17-927A-C64BB5CE04FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244BDFA8-A749-4F17-927A-C64BB5CE04FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244BDFA8-A749-4F17-927A-C64BB5CE04FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244BDFA8-A749-4F17-927A-C64BB5CE04FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
